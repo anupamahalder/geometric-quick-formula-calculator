@@ -16,6 +16,27 @@ function setInnerText(elementId,areaValue){
     const areaSpan = document.getElementById(elementId);
     areaSpan.innerText = areaValue;
 }
+//Add to calculation entry
+/*
+    1. get the element where you want to add the dynamic HTML
+    2. create an element you want to add
+    3. if needed add some class
+    4. set inner HTML. it could be dynamic Template string.
+    5. append the created element as a child of the parent
+*/
+function addToCalculationEntry(areaType, area){
+    console.log(areaType +' '+ area);
+    const calculationEntry = document.getElementById('calculation-entry');
+
+    //To know the child
+    const count = calculationEntry.childElementCount;
+
+    const p = document.createElement('p');
+    //using template string
+    p.innerHTML = `${count+1}. ${areaType}: ${area} cm<sup>2</sup> <button class="btn btn-sm btn-success">Convert</button>`;
+
+    calculationEntry.appendChild(p);
+}
 
 
 ///For triangle
@@ -40,6 +61,9 @@ function triangleAreaCalculate(){
 
     //display area 
     setInnerText('triangle-area',area);
+
+    //Add to calculation 
+    addToCalculationEntry('Triangle',area);
 
     //clear the input field
     baseField.value = '';
@@ -70,6 +94,9 @@ function rectangleAreaCalculate(){
     //display area 
     setInnerText('rectangle-area',area);
     
+    //Add to calculation 
+    addToCalculationEntry('Rectangle',area);
+
     //clear the the input field
     baseField.value = '';
     heightField.value = '';
@@ -102,6 +129,9 @@ function parallelogramAreaCalculate(){
     // recArea.innerText = area;
     setInnerText('parallelogram-area',area);
 
+    //Add to calculation 
+    addToCalculationEntry('Parallelogram',area);
+
     //clear the the input field
     baseField.value = '';
     heightField.value = '';
@@ -133,7 +163,11 @@ function ellipseAreaCalculate(){
     // recArea.innerText = area;
     setInnerText('ellipse-area',area);
 
+    //Add to calculation 
+    addToCalculationEntry('Ellipse',area);
+
     //clear the the input field
     baseField.value = '';
     heightField.value = '';
 }
+
